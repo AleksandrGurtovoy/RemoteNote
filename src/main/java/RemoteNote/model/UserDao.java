@@ -1,7 +1,9 @@
 package RemoteNote.model;
 
-import java.sql.SQLException;
+import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
+@Component
 public interface UserDao {
-    public User getUser(String login, String password) throws SQLException;
+    User getUser(String login, String password) throws SQLException;
 }

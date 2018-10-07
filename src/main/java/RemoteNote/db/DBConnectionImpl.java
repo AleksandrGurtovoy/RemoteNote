@@ -1,12 +1,15 @@
 package RemoteNote.db;
 
 import RemoteNote.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+@Repository
 public class DBConnectionImpl {
 
     private static final DBConnection dbconnection = new DBConnection();
@@ -22,10 +25,14 @@ public class DBConnectionImpl {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
-            user.setLogin(resultSet.getString("login"));
-            user.setFullName(resultSet.getString("FullName"));
+            while (resultSet.next()) {
+                user.setLogin(resultSet.getString("login"));
+                user.setFullName(resultSet.getString("FullName"));
+            }
+
         }
         return user;
     }
 
 }
+//PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("getUser"))

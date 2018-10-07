@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class LoginCommonController {
 
-    @Autowired
-    private LoginCommonService loginCommonService;
+
+    private LoginCommonService loginCommonService = new LoginCommonService();
 
     @ApiOperation(value = "Возвращает юзера из бд")
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)

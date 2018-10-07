@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Properties;
 
+
 public class DBConnection {
 
     protected Connection getConnection() throws SQLException {
@@ -30,7 +31,7 @@ public class DBConnection {
 
     private Properties getProperties(String fileName) {
         Properties properties = null;
-        try (InputStream inputStream = new FileInputStream("src/main/resources/db/" + fileName)) {
+        try (InputStream inputStream = new FileInputStream("src/main/resources/database/" + fileName)) {
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {
