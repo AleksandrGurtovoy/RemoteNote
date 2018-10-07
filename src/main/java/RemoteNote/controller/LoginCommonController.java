@@ -1,5 +1,6 @@
 package RemoteNote.controller;
 
+import RemoteNote.model.User;
 import RemoteNote.service.LoginCommonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -17,10 +18,10 @@ public class LoginCommonController {
     @Autowired
     private LoginCommonService loginCommonService;
 
-    @ApiOperation(value = "Возвращает true если данный пользователь существует")
-    @RequestMapping(value = "/autorizeUser", method = RequestMethod.GET)
+    @ApiOperation(value = "Возвращает юзера из бд")
+    @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)
     @ResponseBody
-    public boolean authorizeUser(
+    public User authorizeUser(
             @ApiParam(value = "Логин и пароль", required = true) @RequestBody JSONObject params) throws Exception {
         return loginCommonService.authUser(params);
     }

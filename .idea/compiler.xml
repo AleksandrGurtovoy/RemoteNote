@@ -9,5 +9,8 @@
         <module name="RemoteNote" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="RemoteNote" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
