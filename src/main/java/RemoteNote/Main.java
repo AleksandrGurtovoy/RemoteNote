@@ -1,28 +1,12 @@
 package RemoteNote;
 
 import RemoteNote.controller.LoginCommonController;
-import RemoteNote.db.DBConnection;
 import RemoteNote.model.User;
-import RemoteNote.service.LoginCommonService;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.Properties;
 
 public class Main {
 
-
-
-
     public static void main(String[] args) throws Exception {
-        login();
-    }
-
-    public static void login() throws Exception {
         LoginCommonController loginCommonController = new LoginCommonController();
 
         JSONObject jsonObject = new JSONObject();
@@ -47,4 +31,5 @@ public class Main {
         System.out.println(user.getFullName());
         System.out.println("ok");*/
     }
+
 }

@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="RemoteNote">
+    <output-path>$PROJECT_DIR$/out/artifacts/RemoteNote</output-path>
+    <root id="archive" name="RemoteNote.war" />
+  </artifact>
+</component>

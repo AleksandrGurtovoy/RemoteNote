@@ -1,17 +1,13 @@
 package RemoteNote.service;
 
 import RemoteNote.model.User;
-import RemoteNote.model.UserDao;
 import RemoteNote.model.UserDaoImpl;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.Objects;
 
-@Component("loginCommonService")
 @Service
 public class LoginCommonService {
 
