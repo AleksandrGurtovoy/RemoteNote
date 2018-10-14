@@ -2,14 +2,16 @@
 <html lang="en" ng-controller="MainCtrl">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
+    var prefix = '/RemoteNote/user';
     var Validation = function() {
         var formData = {
             "login": $("login").val(),
             "password": $("password").val()
         };
         $.ajax({
-            url: 'http://localhost:8080/user/authorizeUser',
+            url: prefix + '/authorizeUser',
             type: 'POST',
+            dataType: 'json',
             data: 'params=' + $.toJSON(formData),
             success: function (res) {
                 alert(res);
