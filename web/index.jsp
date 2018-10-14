@@ -1,27 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en" ng-controller="MainCtrl">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+    var Validation = function() {
+        var formData = {
+            "login": $("login").val(),
+            "password": $("password").val()
+        };
+        $.ajax({
+            url: 'http://localhost:8080/user/authorizeUser',
+            type: 'POST',
+            data: 'params=' + $.toJSON(formData),
+            success: function (res) {
+                alert(res);
+            }
+        });
+    }
+
+</script>
 <head>
     <meta charset="UTF-8">
     <title>RemoteNote</title>
     <%--<link rel="stylesheet" href="main.css"/>--%>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript">
-        var Validation = function() {
-            var formData = {
-                "login": $("login").val(),
-                "password": $("password").val()
-            };
-            $.ajax({
-                url: 'http://localhost:8080/user/authorizeUser',
-                type: 'POST',
-                data: 'params=' + $.toJSON(formData),
-                success: function (res) {
-                    alert(res);
-                }
-            });
-        }
-
-    </script>
 </head>
 <body class="auth-form">
 <div>
