@@ -1,10 +1,27 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en" ng-controller="MainCtrl">
 <head>
     <meta charset="UTF-8">
     <title>RemoteNote</title>
-    <link rel="stylesheet" href="main.css"/>
-    <script src="jquery-3.3.1.js"></script>
+    <%--<link rel="stylesheet" href="main.css"/>--%>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        var Validation = function() {
+            var formData = {
+                "login": $("login").val(),
+                "password": $("password").val()
+            };
+            $.ajax({
+                url: 'http://localhost:8080/user/authorizeUser',
+                type: 'POST',
+                data: 'params=' + $.toJSON(formData),
+                success: function (res) {
+                    alert(res);
+                }
+            });
+        }
+
+    </script>
 </head>
 <body class="auth-form">
 <div>
@@ -17,6 +34,7 @@
             <input type="text" name="login" id="login" class="form-control" placeholder="Login" style="font-family: 'Courier New';"
                    ng-model="login">
         </div>
+
         <br>
         <div class="form-group">
             <input type="text" name="password" id="password" placeholder="Password" class="form-control" style="font-family: 'Courier New';"
@@ -28,7 +46,7 @@
         </div>
 
         <div class="button-form-row">
-            <button class="btn btn-login" ng-click="Validation()">
+            <button class="btn btn-login" onclick="Validation()">
                 LOGIN
             </button>
         </div>
