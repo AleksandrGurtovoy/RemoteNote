@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("RemoteNote")
+@ComponentScan("RemoteNote.controller")
 public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Bean
