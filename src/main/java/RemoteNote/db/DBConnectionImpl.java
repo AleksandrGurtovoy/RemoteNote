@@ -43,6 +43,7 @@ public class DBConnectionImpl {
             while (resultSet.next()) {
                 user.setLogin(resultSet.getString("login"));
                 user.setFullName(resultSet.getString("FullName"));
+                user.setPassword(resultSet.getString("password"));
             }
 
         }

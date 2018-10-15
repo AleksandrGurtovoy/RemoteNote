@@ -13,8 +13,8 @@ public class LoginCommonService {
 
     private UserDaoImpl userDao = new UserDaoImpl();
 
-    public User authUser(String login) throws SQLException {
-
+    public JSONObject authUser(String login) throws SQLException {
+        JSONObject jsonObject = new JSONObject();
         User user = new User();
         if (login != null) {
             user = userDao.getUserByLogin(login);
@@ -22,7 +22,10 @@ public class LoginCommonService {
             throw new RuntimeException("Login is null");
         }
         if (!Objects.isNull(user)) {
-            return user;
+            jsonObject.put("login", user.getLogin());
+            jsonObject.put("fullName", user.getFullName());
+            jsonObject.put("password", user.getPassword());
+            return jsonObject;
         } else {
             throw new RuntimeException("User with login = " + login + " not found");
         }

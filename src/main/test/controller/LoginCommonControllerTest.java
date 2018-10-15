@@ -18,19 +18,19 @@ public class LoginCommonControllerTest {
     @Test
     public void authorizeUser_json_trueReturned() throws Exception {
         LoginCommonController lccMock = mock(LoginCommonController.class);
-        User testUser = new User();
-        testUser.setFullName("admin");
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("login", "admin");
+        jsonObject.put("fullName", "admin");
+        jsonObject.put("password","admin");
         String login = "admin";
-        when(lccMock.authorizeUser(login)).thenReturn(testUser);
-        Assert.assertEquals("admin", lccMock.authorizeUser(login).getFullName());
+        when(lccMock.authorizeUser(login)).thenReturn(jsonObject.toString());
+        Assert.assertEquals(jsonObject.toString(), lccMock.authorizeUser(login));
     }
 
     @Test
-    public void authorizeUser_json_falseReturned() throws Exception {
-        LoginCommonController lccMock = mock(LoginCommonController.class);
-        User testUser = new User();
-        String login = "neAdmin";
-        when(lccMock.authorizeUser(login)).thenReturn(testUser);
-        Assert.assertEquals(null, lccMock.authorizeUser(login).getFullName());
+    public void mainPage_indexReturned(){
+        LoginCommonController controller = new LoginCommonController();
+        String result = controller.mainPage();
+        Assert.assertEquals("index", result);
     }
 }

@@ -9,9 +9,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         LoginCommonController loginCommonController = new LoginCommonController();
 
-        String login = "admin";
+        String login = "admin";/*
         User user = loginCommonController.authorizeUser(login);
-        System.out.println(user.getFullName());
+        System.out.println(user.getFullName());*/
         /*Properties props = new Properties();
         props.setProperty("user","postgres");
         props.setProperty("password", "root");

@@ -31,7 +31,7 @@ public class DBConnection {
 
     private Properties getProperties(String fileName) {
         Properties properties = null;
-        try (InputStream inputStream = new FileInputStream("src/main/resources/database/" + fileName)) {
+        try (InputStream inputStream = getClass().getResourceAsStream("/database/" + fileName)) {
             properties = new Properties();
             properties.load(inputStream);
         } catch (IOException e) {

@@ -19,9 +19,9 @@ public class LoginCommonController {
     @ApiOperation(value = "Возвращает юзера из бд")
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)
     @ResponseBody
-    public User authorizeUser(
+    public String authorizeUser(
             @ApiParam(value = "Логин и пароль", required = true) @RequestParam(name = "login") String login) throws Exception {
-        return loginCommonService.authUser(login);
+        return loginCommonService.authUser(login).toString();
     }
 
     @RequestMapping(method = RequestMethod.GET)
