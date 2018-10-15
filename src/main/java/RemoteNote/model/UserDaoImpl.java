@@ -1,5 +1,6 @@
 package RemoteNote.model;
 
+import RemoteNote.db.DBConnection;
 import RemoteNote.db.DBConnectionImpl;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +12,11 @@ public class UserDaoImpl implements UserDao {
     public User getUser(String login, String password) throws SQLException {
         DBConnectionImpl connection = new DBConnectionImpl();
         return connection.getUser(login, password);
+    }
+
+    @Override
+    public User getUserByLogin(String login) throws SQLException {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        return connection.getUserByLogin(login);
     }
 }

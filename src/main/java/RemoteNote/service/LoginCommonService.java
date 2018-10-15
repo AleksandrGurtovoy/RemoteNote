@@ -13,13 +13,13 @@ public class LoginCommonService {
 
     private UserDaoImpl userDao = new UserDaoImpl();
 
-    public User authUser(JSONObject params) throws SQLException {
-        String login = params.getString("login");
-        String pass = params.getString("password");
+    public User authUser(String login) throws SQLException {
 
         User user = new User();
-        if (login != null && pass != null) {
-            user = userDao.getUser(login, pass);
+        if (login != null) {
+            user = userDao.getUserByLogin(login);
+        } else {
+            throw new RuntimeException("Login is null");
         }
         if (!Objects.isNull(user)) {
             return user;
