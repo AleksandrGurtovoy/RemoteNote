@@ -20,6 +20,8 @@ public class LoginCommonService {
         User user = new User();
         if (login != null && pass != null) {
             user = userDao.getUser(login, pass);
+        } else {
+            throw new RuntimeException("Login or pass is null");
         }
         if (!Objects.isNull(user)) {
             return user;
