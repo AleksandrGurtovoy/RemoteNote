@@ -6,11 +6,10 @@
     var inputs = $('#login').val()
     var Validation = function() {
         $.ajax({
-            url: prefix + '/authorizeUser',
-            data: inputs,
+            url: prefix + '/authorizeUser?login='+inputs,
             type: 'GET',
             success: function (res) {
-                alert(res);
+                alert(res.toString());
             }
         });
     }
