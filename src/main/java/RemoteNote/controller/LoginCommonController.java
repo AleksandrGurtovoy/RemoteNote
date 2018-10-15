@@ -29,5 +29,10 @@ public class LoginCommonController {
         return "index";
     }
 
+    @RequestMapping(value = "/in",method = RequestMethod.GET)
+    public String secondPage() {
+        return "second";
+    }
+
 
 }

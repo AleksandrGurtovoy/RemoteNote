@@ -12,10 +12,11 @@
             success: function (res) {
                 var mas = JSON.parse(res)
                 if(mas.password == pass.value){
-                    alert("ok")
+                    document.getElementById("logForm").style.visibility = 'hidden';
+                    document.getElementById("label").style.visibility = 'visible';
                 } else{
 
-                    alert(mas)
+                   alert("Login or password is incorrect")
                 }
             }
         });
@@ -104,15 +105,17 @@
             LOGIN
         </button>
     </div>--%>
-    <div class="login">
+    <div id="logForm" class="login">
         <h1>Login</h1>
-        <form method="post">
             <input type="text" name="login" id="login" class="form-control" placeholder="Login" style="font-family: 'Courier New';"
                    ng-model="login" />
             <input type="text" name="password" id="password" placeholder="Password" class="form-control" style="font-family: 'Courier New';"
                    ng-model="password"/>
-            <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation">LOGIN</button>
-        </form>
+            <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation()">LOGIN</button>
     </div>
+<div id="label" style="text-align: center; visibility: hidden; color: white; margin-top: 200px" >
+    <label style="font-size: 20px" >Authorize successful. Welcome to your RemoteNote!</label>
+</div>
+
 </body>
 </html>
