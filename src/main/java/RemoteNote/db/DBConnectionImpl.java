@@ -34,5 +34,19 @@ public class DBConnectionImpl {
         return user;
     }
 
+    public User getUserByLogin(String login) throws SQLException {
+        User user = new User();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("getUserByLogin"))) {
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user.setLogin(resultSet.getString("login"));
+                user.setFullName(resultSet.getString("FullName"));
+            }
+
+        }
+        return user;
+    }
+
 }
-//PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("getUser"))

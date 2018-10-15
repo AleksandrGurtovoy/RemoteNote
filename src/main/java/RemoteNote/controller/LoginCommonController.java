@@ -5,6 +5,7 @@ import RemoteNote.service.LoginCommonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class LoginCommonController {
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.POST)
     @ResponseBody
     public User authorizeUser(
-            @ApiParam(value = "Логин и пароль", required = true) @RequestBody JSONObject params) throws Exception {
-        return loginCommonService.authUser(params);
+            @ApiParam(value = "Логин и пароль", required = true) @RequestBody String login) throws Exception {
+        return loginCommonService.authUser(login);
     }
 }

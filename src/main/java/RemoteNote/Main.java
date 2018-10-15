@@ -9,10 +9,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         LoginCommonController loginCommonController = new LoginCommonController();
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("login", "admin");
-        jsonObject.put("password", "admin");
-        User user = loginCommonController.authorizeUser(jsonObject);
+        String login = "admin";
+        User user = loginCommonController.authorizeUser(login);
         System.out.println(user.getFullName());
         /*Properties props = new Properties();
         props.setProperty("user","postgres");

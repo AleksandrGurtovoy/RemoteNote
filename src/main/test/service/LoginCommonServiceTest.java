@@ -20,36 +20,30 @@ public class LoginCommonServiceTest {
     @Test
     public void authUser_json_userReturned() throws SQLException {
         LoginCommonService lcsMock = mock(LoginCommonService.class);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("login", "admin");
-        jsonObject.put("password", "admin");
+        String login = "login";
         User user = new User();
         user.setFullName("admin");
-        when(lcsMock.authUser(jsonObject)).thenReturn(user);
-        Assert.assertEquals("admin", lcsMock.authUser(jsonObject).getFullName());
+        when(lcsMock.authUser(login)).thenReturn(user);
+        Assert.assertEquals("admin", lcsMock.authUser(login).getFullName());
     }
 
     @Test(expected = RuntimeException.class)
     public void authUser_json_nullReturned() throws SQLException {
         LoginCommonService lcsMock = mock(LoginCommonService.class);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("login", "admin");
-        jsonObject.put("password", java.util.Optional.of(null));
+        String login = null;
         User user = new User();
         user.setFullName("admin");
-        when(lcsMock.authUser(jsonObject)).thenReturn(user);
-        Assert.assertEquals("admin", lcsMock.authUser(jsonObject).getFullName());
+        when(lcsMock.authUser(login)).thenReturn(user);
+        Assert.assertEquals("admin", lcsMock.authUser(login).getFullName());
     }
 
     @Test(expected = RuntimeException.class)
     public void authUser_json_nullUserReturned() throws SQLException {
         LoginCommonService lcsMock = mock(LoginCommonService.class);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("login", "admin");
-        jsonObject.put("password", "admin");
+        String login = "admin";
         User user = null;
-        when(lcsMock.authUser(jsonObject)).thenReturn(user);
-        Assert.assertEquals("admin", lcsMock.authUser(jsonObject).getFullName());
+        when(lcsMock.authUser(login)).thenReturn(user);
+        Assert.assertEquals("admin", lcsMock.authUser(login).getFullName());
     }
 
 }
