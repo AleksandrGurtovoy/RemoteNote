@@ -12,8 +12,8 @@ public class Main {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("login", "admin");
         jsonObject.put("password", "admin");
-        User user = loginCommonController.authorizeUser(jsonObject);
-        System.out.println(user.getFullName());
+        //User user = loginCommonController.authorizeUser(jsonObject);
+        //System.out.println(user.getFullName());
         /*Properties props = new Properties();
         props.setProperty("user","postgres");
         props.setProperty("password", "root");
