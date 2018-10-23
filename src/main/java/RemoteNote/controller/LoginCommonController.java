@@ -21,7 +21,7 @@ public class LoginCommonController {
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)
     @ResponseBody
     public String authorizeUser(
-            @ApiParam(value = "Логин и пароль", required = true) @RequestParam(name = "login") String login) throws Exception {
+            @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login) throws Exception {
         return loginCommonService.authUser(login).toString();
     }
 
@@ -32,7 +32,7 @@ public class LoginCommonController {
 
     @RequestMapping(value = "/in", method = RequestMethod.GET)
     public String secondPage() {
-        return "second";
+        throw new UnsupportedOperationException();
     }
 
 

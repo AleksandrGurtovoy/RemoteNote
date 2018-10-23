@@ -1,22 +1,31 @@
 package RemoteNote.model;
 
-import RemoteNote.db.DBConnection;
 import RemoteNote.db.DBConnectionImpl;
 import org.springframework.stereotype.Repository;
-
-import java.sql.SQLException;
 
 @Repository
 public class UserDaoImpl implements UserDao {
     @Override
-    public User getUser(String login, String password) throws SQLException {
+    public User getUser(String login, String password) {
         DBConnectionImpl connection = new DBConnectionImpl();
-        return connection.getUser(login, password);
+        User user;
+        try {
+            user = connection.getUser(login, password);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+        return user;
     }
 
     @Override
-    public User getUserByLogin(String login) throws SQLException {
+    public User getUserByLogin(String login) {
         DBConnectionImpl connection = new DBConnectionImpl();
-        return connection.getUserByLogin(login);
+        User user;
+        try {
+            user = connection.getUserByLogin(login);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+        return user;
     }
 }
