@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="RemoteNote:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="RemoteNote.war">
-      <element id="artifact" artifact-name="RemoteNote:war exploded" />
-    </root>
-  </artifact>
-</component>

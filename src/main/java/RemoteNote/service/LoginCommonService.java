@@ -1,8 +1,9 @@
 package RemoteNote.service;
 
 import RemoteNote.model.User;
-import RemoteNote.model.UserDaoImpl;
+import RemoteNote.model.UserDao;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -11,7 +12,8 @@ import java.util.Objects;
 @Service
 public class LoginCommonService {
 
-    private UserDaoImpl userDao = new UserDaoImpl();
+    @Autowired
+    private UserDao userDao;
 
     public JSONObject authUser(String login) throws SQLException {
         JSONObject jsonObject = new JSONObject();
