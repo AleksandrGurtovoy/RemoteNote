@@ -4,6 +4,8 @@ import RemoteNote.service.LoginCommonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/")
 public class LoginCommonController {
 
-    @Autowired
-    private LoginCommonService loginCommonService;
+    private LoginCommonService loginCommonService = new LoginCommonService();
 
     @ApiOperation(value = "Возвращает юзера из бд")
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)
@@ -32,7 +33,7 @@ public class LoginCommonController {
 
     @RequestMapping(value = "/in", method = RequestMethod.GET)
     public String secondPage() {
-        throw new UnsupportedOperationException();
+        return "second";
     }
 
 

@@ -88,23 +88,6 @@
     <title>RemoteNote</title>
 </head>
 <body>
-<%--class="auth-form">
-    <div class="form-group" style="margin-top: 10px">
-        <input type="text" name="login" id="login" class="form-control" placeholder="Login" style="font-family: 'Courier New';"
-               ng-model="login">
-    </div>
-
-    <br>
-    <div class="form-group">
-        <input type="text" name="password" id="password" placeholder="Password" class="form-control" style="font-family: 'Courier New';"
-               ng-model="password">
-
-</div>
-    <div class="button-form-row">
-        <button class="btn btn-login" onclick="Validation()">
-            LOGIN
-        </button>
-    </div>--%>
     <div id="logForm" class="login">
         <h1>Login</h1>
             <input type="text" name="login" id="login" class="form-control" placeholder="Login" style="font-family: 'Courier New';"
