@@ -5,6 +5,7 @@ import RemoteNote.model.User;
 import RemoteNote.model.UserDaoImpl;
 import RemoteNote.service.ServiceException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Objects;
 @Service
@@ -27,5 +28,36 @@ public class BusinessRules {
             throw new RuntimeException("User with login = " + login + " not found");
         }
         return user;
+    }
+
+    public byte[] getPhoto(String login){
+        if(Objects.isNull(login)){
+            throw new ServiceException("Login is null");
+        }
+        byte[] photo;
+        try{
+            photo = userDao.getPhotoByLogin(login);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex, ex.getMessage());
+        }
+        if (Objects.isNull(photo)) {
+            throw new RuntimeException("Photo by login = " + login + " not found");
+        }
+        return photo;
+    }
+
+    public String setPhoto(String login, MultipartFile photo){
+        if(Objects.isNull(login)){
+            throw new ServiceException("Login is null");
+        }
+        if(Objects.isNull(photo)){
+            throw new ServiceException("photo is null");
+        }
+        try {
+            userDao.setPhotoByLogin(login, photo.getBytes());
+            return "Ok";
+        } catch (Exception ex){
+            throw new ServiceException(ex, ex.getMessage());
+        }
     }
 }

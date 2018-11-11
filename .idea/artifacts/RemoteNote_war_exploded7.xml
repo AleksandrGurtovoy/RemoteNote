@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="RemoteNote:war exploded7">
+    <output-path>$PROJECT_DIR$/out/artifacts/RemoteNote_war_exploded7</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="RemoteNote/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="RemoteNote" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
