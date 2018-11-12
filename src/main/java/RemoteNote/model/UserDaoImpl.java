@@ -30,9 +30,9 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public byte[] getPhotoByLogin(String login) {
+    public String getPhotoByLogin(String login) {
         DBConnectionImpl connection = new DBConnectionImpl();
-        byte[] photo;
+        String photo;
         try {
             photo = connection.getPhotoByLogin(login);
         } catch (DaoException ex) {
@@ -42,10 +42,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void setPhotoByLogin(String login, byte[] photo) {
+    public void setPhotoByLogin(String login, String photo) {
         DBConnectionImpl connection = new DBConnectionImpl();
         try {
-           connection.setPhotoByLogin(login, photo);
+            connection.setPhotoByLogin(login, photo);
         } catch (DaoException ex) {
             throw new DaoException(ex, ex.getMessage());
         }

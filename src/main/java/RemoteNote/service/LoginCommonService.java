@@ -9,6 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Base64;
+
 @Service("loginCommonService")
 public class LoginCommonService {
 
@@ -29,13 +32,14 @@ public class LoginCommonService {
 
     public byte[] getPhoto(String login) {
         LOG.info("Get photo by login {} is started...", login);
-        byte[] photo = brules.getPhoto(login);
-        return photo;
+        String photo = brules.getPhoto(login);
+        return Base64.getDecoder().decode(photo.getBytes());
     }
 
-    public String setPhoto(String login, MultipartFile photo){
+    public String setPhoto(String login, byte[] photo) throws IOException {
         LOG.info("Set photo by login {} is started...", login);
-        return brules.setPhoto(login, photo);
+        String encodedPhoto = new String(Base64.getEncoder().encode(photo));
+        return brules.setPhoto(login, encodedPhoto);
     }
 }
 

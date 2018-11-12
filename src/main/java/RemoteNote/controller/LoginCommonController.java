@@ -50,8 +50,8 @@ public class LoginCommonController {
     @ResponseBody
     public String setPhoto(
             @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login,
-            @ApiParam(value = "Фото", required = true) @RequestBody MultipartFile photo) throws Exception {
-        LOG.info("Retrieve photo with size{}", photo.getSize());
+            @ApiParam(value = "Фото", required = true) @RequestBody byte[] photo) throws Exception {
+        LOG.info("Retrieve photo with size{}", photo.length);
         return loginCommonService.setPhoto(login, photo);
     }
 

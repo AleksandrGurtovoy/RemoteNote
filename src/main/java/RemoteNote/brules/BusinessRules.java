@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Objects;
+
 @Service
 public class BusinessRules {
 
@@ -30,12 +31,12 @@ public class BusinessRules {
         return user;
     }
 
-    public byte[] getPhoto(String login){
-        if(Objects.isNull(login)){
+    public String getPhoto(String login) {
+        if (Objects.isNull(login)) {
             throw new ServiceException("Login is null");
         }
-        byte[] photo;
-        try{
+        String photo;
+        try {
             photo = userDao.getPhotoByLogin(login);
         } catch (DaoException ex) {
             throw new ServiceException(ex, ex.getMessage());
@@ -46,17 +47,17 @@ public class BusinessRules {
         return photo;
     }
 
-    public String setPhoto(String login, MultipartFile photo){
-        if(Objects.isNull(login)){
+    public String setPhoto(String login, String photo) {
+        if (Objects.isNull(login)) {
             throw new ServiceException("Login is null");
         }
-        if(Objects.isNull(photo)){
+        if (Objects.isNull(photo)) {
             throw new ServiceException("photo is null");
         }
         try {
-            userDao.setPhotoByLogin(login, photo.getBytes());
+            userDao.setPhotoByLogin(login, photo);
             return "Ok";
-        } catch (Exception ex){
+        } catch (Exception ex) {
             throw new ServiceException(ex, ex.getMessage());
         }
     }

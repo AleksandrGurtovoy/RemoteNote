@@ -58,28 +58,28 @@ public class DBConnectionImpl {
         return user;
     }
 
-    public byte[] getPhotoByLogin(String login) {
+    public String getPhotoByLogin(String login) {
         LOG.info("DBConnectionImpl, getPhotoByLogin with login {} started...", login);
-        byte[] photo = null;
+        String encodedPhoto = null;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      dbconnection.getQuery("getPhotoByLogin"))) {
-        preparedStatement.setString(1, login);
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while(resultSet.next()){
-            photo = resultSet.getBytes("photo");
-        }
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                encodedPhoto = resultSet.getString("photo");
+            }
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
-        return photo;
+        return encodedPhoto;
     }
 
-    public void setPhotoByLogin(String login, byte[] photo){
+    public void setPhotoByLogin(String login, String photo) {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      dbconnection.getQuery("setPhotoByLogin"))) {
-            preparedStatement.setBytes(1, photo);
+            preparedStatement.setString(1, photo);
             preparedStatement.setString(2, login);
             preparedStatement.executeQuery();
         } catch (SQLException ex) {

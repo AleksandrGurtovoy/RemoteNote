@@ -3,6 +3,7 @@ package RemoteNote;
 import RemoteNote.controller.LoginCommonController;
 import RemoteNote.file.MultipartFileImpl;
 import RemoteNote.model.User;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
@@ -16,12 +17,14 @@ public class Main {
     public static void main(String[] args) throws Exception {
         LoginCommonController loginCommonController = new LoginCommonController();
 
-                File file = new File("john-travolta-bald.jpg");
-        byte[] bytes = Files.readAllBytes(file.toPath());
+        File file = new File("D:\\iGov\\projects\\RemoteNote\\web\\john-travolta-bald.jpg");
+        byte[] bytes = FileUtils.readFileToByteArray(file);
         System.out.println(bytes.length);
         byte[] encoded = Base64.getEncoder().encode(bytes);
         System.out.println(new String(encoded));
         byte[] decoded = Base64.getDecoder().decode(encoded);
+
+       // loginCommonController.setPhoto("admin", encoded);
        /* OutputStream os = new FileOutputStream(file);
         InputStream is = new ByteArrayInputStream(bytes);
        os.close();

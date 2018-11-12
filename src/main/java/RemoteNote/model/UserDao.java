@@ -7,7 +7,7 @@ public interface UserDao {
 
     User getUserByLogin(String login);
 
-    byte[] getPhotoByLogin(String login);
+    String getPhotoByLogin(String login);
 
-    void setPhotoByLogin(String login, byte[] photo);
+    void setPhotoByLogin(String login, String photo);
 }
