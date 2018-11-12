@@ -9,17 +9,26 @@
         $.ajax({
             url:'/authorizeUser?login='+login,
             type: 'GET',
+            //templateUrl: 'remoteNote.html',
             success: function (res) {
                 var mas = JSON.parse(res)
                 if(mas.password == pass.value){
                     document.getElementById("logForm").style.visibility = 'hidden';
-                    document.getElementById("label").style.visibility = 'visible';
+                    document.getElementById("profileBlock").style.visibility = 'visible';
                 } else{
 
                    alert("Login or password is incorrect")
                 }
             }
         });
+    };
+
+    var getUserPhoto = function() {
+     $.ajax({
+      url:'/getPhoto',
+      type: 'GET',
+      templateUrl: 'remoteNote.html'
+    })
     }
 
 </script>
@@ -81,6 +90,37 @@
         transition: box-shadow .5s ease;
     }
     input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+        .profileBlock {
+        position: absolute;
+        margin-left: 45%;
+        margin-top: 100px;
+        }
+
+        .text-left {
+        font-size: 28px;
+        }
+
+        .form-group {
+        border: 1px;
+        border-radius: 3px;
+        }
+
+        .image-cropper {
+        width: 36px;
+        height: 36px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-left: 5px;
+        }
+
+        .image-cropper img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+        }
 
 </style>
 <head>
@@ -90,15 +130,33 @@
 <body>
     <div id="logForm" class="login">
         <h1>Login</h1>
-            <input type="text" name="login" id="login" class="form-control" placeholder="Login" style="font-family: 'Courier New';"
-                   ng-model="login" />
-            <input type="text" name="password" id="password" placeholder="Password" class="form-control" style="font-family: 'Courier New';"
+            <input type="text" name="login" id="login" class="form-control" placeholder="Login"
+                   style="font-family: 'Courier New';"
+                   ng-model="login"/>
+            <input type="text" name="password" id="password" placeholder="Password" class="form-control"
+                   style="font-family: 'Courier New';"
                    ng-model="password"/>
             <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation()">LOGIN</button>
     </div>
+
 <div id="label" style="text-align: center; visibility: hidden; color: white; margin-top: 200px" >
     <label style="font-size: 20px" >Authorize successful. Welcome to your RemoteNote!</label>
 </div>
+
+    <div class="profileBlock" id="profileBlock">
+        <div class="text-left">
+             <h4 translate>Your Profile</h4>
+       </div>
+       <div class="form-group">
+             <div class="userName">
+                 <div class="image-cropper">
+                   <img ng-src="/getUserPhoto">
+                 </div>
+                 <p style="font-size: 24px">Name: <span>{{fullName}}</span></p>
+                 <p style="font-size: 24px">Login: <span>{{login}}</span></p>
+             </div>
+       </div>
+    </div>
 
 </body>
 </html>

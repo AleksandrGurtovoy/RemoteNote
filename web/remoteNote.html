@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-    .photo {
-        width: 200px;
-        height: 250px;
-        position: absolute;
-        margin: 1px 0 0 20px;
-        border: 3px;
+    body {
+        width: 100%;
+        height: 100%;
+        font-family: 'Open Sans', sans-serif;
+        background: darkslateblue;
+    }
 
-    }
-    .info{
+    .profileBlock {
         position: absolute;
-        margin: 100px 50px 100px 250px;
+        margin-left: 45%;
+        margin-top: 100px;
     }
-    .row{
-        border: solid 100px black;
+
+    .text-left {
+        font-size: 28px;
     }
+
+    .form-group {
+        border: 1px;
+        border-radius: 3px;
+    }
+
+    .image-cropper {
+        width: 36px;
+        height: 36px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-left: 5px;
+    }
+
+    .image-cropper img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+    }
+
 </style>
 <head>
     <meta charset="UTF-8">
     <title>Success</title>
 </head>
 <body>
-<div class="row">
-        <img class="photo" src="john-travolta-bald.jpg" id="photo" align="left">
-    <div class="info">
-        <h2>Сергей Иванов</h2>
-        <p><strong>Description: </strong> Веб-дизайнер. </p>
+<div class="profileBlock" id="profileBlock">
+    <div class="text-left">
+        <h4 translate>Your Profile</h4>
+    </div>
+    <div class="form-group">
+        <div class="userName">
+            <div class="image-cropper">
+                <img ng-src="getUserPhoto?login='+login">
+            </div>
+                <p>Name: <span>{{fullName}}</span></p>
+                <p>Login: <span>{{login}}</span></p>
+         </div>
     </div>
 </div>
 </body>
