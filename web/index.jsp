@@ -2,20 +2,27 @@
 <html lang="en" ng-controller="MainCtrl">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript">
-
+    var fullName = "";
     var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
         $.ajax({
             url: '/authorizeUser?login=' + login,
             type: 'GET',
-            //templateUrl: 'remoteNote.html',
             success: function (res) {
                 var mas = JSON.parse(res);
-                var fullName = mas.fullName;
+                fullName = mas.fullName;
                 if (mas.password == pass.value) {
-                    document.getElementById("logForm").style.visibility = 'hidden';
-                    document.getElementById("profileBlock").style.visibility = 'visible';
+                    $.ajax({
+                        url: '/getPhoto?login=' + login,
+                        type: 'GET',
+                        success: function (res) {
+                            document.getElementById("photo").value = res;
+                            document.getElementById("logForm").style.visibility = 'hidden';
+                            document.getElementById("profileBlock").style.visibility = 'visible';
+                            document.getElementById("fullName").value = fullName;
+                        }})
+
                 } else {
 
                     alert("Login or password is incorrect")
@@ -256,10 +263,10 @@
     <div class="form-group">
         <div class="userName">
             <div class="image-cropper">
-                <img ng-src="/getUserPhoto">
+                <img id="photo">
             </div>
-            <p style="font-size: 24px">Name: <span>{{fullName}}</span></p>
-            <p style="font-size: 24px">Login: <span>{{login}}</span></p>
+           <input id="fullName" style="font-size: 24px" readonly>
+
         </div>
     </div>
 </div>
