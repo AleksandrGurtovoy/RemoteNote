@@ -27,22 +27,22 @@ public class LoginCommonController {
     @RequestMapping(value = "/authorizeUser", method = RequestMethod.GET)
     @ResponseBody
     public String authorizeUser(
-            @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login) throws Exception {
+            @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login) {
         return loginCommonService.authUser(login).toString();
     }
 
     @RequestMapping(value = "/getPhoto", method = RequestMethod.GET)
     @ResponseBody
-    public byte[] getPhoto(
+    public String getPhoto(
             @ApiParam(required = true, value = "Строковый логин сотрудника") @RequestParam String login,
             HttpServletResponse httpResponse) {
 
-        byte[] photo = loginCommonService.getPhoto(login);
+        /*byte[] photo = loginCommonService.getPhoto(login);
         httpResponse.setHeader("Content-disposition", "attachment; filename="
                 + login + ".jpg");
         httpResponse.setHeader("Content-Type", "image/jpeg");
-        httpResponse.setContentLength(photo.length);
-        return photo;
+        httpResponse.setContentLength(photo.length);*/
+        return loginCommonService.getPhoto(login);
     }
 
     @ApiOperation(value = "Сохраняет фото юзера в бд")

@@ -17,10 +17,12 @@
                         url: '/getPhoto?login=' + login,
                         type: 'GET',
                         success: function (res) {
+                            var source = "data:image/jpeg;base64,"+res;
                             document.getElementById("photo").value = res;
                             document.getElementById("logForm").style.visibility = 'hidden';
                             document.getElementById("profileBlock").style.visibility = 'visible';
                             document.getElementById("fullName").value = fullName;
+                            document.getElementById("photo").src = source;
                         }})
 
                 } else {
@@ -205,8 +207,7 @@
 
     .profileBlock {
         position: absolute;
-        margin-left: 45%;
-        margin-top: 100px;
+        margin-left: 40%;
     }
 
     .text-left {
@@ -252,21 +253,15 @@
     <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation()">LOGIN</button>
 </div>
 
-<div id="label" style="text-align: center; visibility: hidden; color: white; margin-top: 200px">
-    <label style="font-size: 20px">Authorize successful. Welcome to your RemoteNote!</label>
-</div>
-
 <div class="profileBlock" id="profileBlock" style="visibility: hidden;">
     <div class="text-left">
         <h4 translate>Your Profile</h4>
     </div>
+    <img id="photo" src="" width="200" height="300" style="margin-left: 50px">
     <div class="form-group">
-        <div class="userName">
-            <div class="image-cropper">
-                <img id="photo">
-            </div>
-           <input id="fullName" style="font-size: 24px" readonly>
 
+        <div class="userName">
+           <input id="fullName" style="font-size: 24px" readonly>
         </div>
     </div>
 </div>

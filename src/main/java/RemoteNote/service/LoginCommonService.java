@@ -30,10 +30,11 @@ public class LoginCommonService {
         return jsonObject;
     }
 
-    public byte[] getPhoto(String login) {
+    public String getPhoto(String login) {
         LOG.info("Get photo by login {} is started...", login);
         String photo = brules.getPhoto(login);
-        return Base64.getDecoder().decode(photo.getBytes());
+        //return Base64.getDecoder().decode(photo.getBytes());
+        return photo;
     }
 
     public String setPhoto(String login, byte[] photo) throws IOException {

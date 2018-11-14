@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         LoginCommonController loginCommonController = new LoginCommonController();
 
-        File file = new File("D:\\iGov\\projects\\RemoteNote\\web\\john-travolta-bald.jpg");
+        File file = new File("E:\\Work\\RemoteNote\\web\\john-travolta-bald.jpg");
         byte[] bytes = FileUtils.readFileToByteArray(file);
         System.out.println(bytes.length);
         byte[] encoded = Base64.getEncoder().encode(bytes);
