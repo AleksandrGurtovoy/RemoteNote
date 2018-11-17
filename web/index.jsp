@@ -17,13 +17,14 @@
                         url: '/getPhoto?login=' + login,
                         type: 'GET',
                         success: function (res) {
-                            var source = "data:image/jpeg;base64,"+res;
+                            var source = "data:image/jpeg;base64," + res;
                             document.getElementById("photo").value = res;
                             document.getElementById("logForm").style.visibility = 'hidden';
                             document.getElementById("profileBlock").style.visibility = 'visible';
                             document.getElementById("fullName").value = fullName;
                             document.getElementById("photo").src = source;
-                        }})
+                        }
+                    })
 
                 } else {
 
@@ -257,11 +258,13 @@
     <div class="text-left">
         <h4 translate>Your Profile</h4>
     </div>
-    <img id="photo" src="" width="200" height="300" style="margin-left: 50px">
+    <img id="photo" src="" width="200" height="300"
+         style="margin-left: -530px; position: absolute; border: 5px solid black;">
     <div class="form-group">
-
-        <div class="userName">
-           <input id="fullName" style="font-size: 24px" readonly>
+        <div class="userName" style="margin-left: -300px; margin-top: 30px;">
+            <span style="font-size: 24px; color: black">Full name: </span>
+            <input id="fullName" style="margin-left: 150px; margin-top:-38px; font-size: 24px; border-radius: 0px;
+             box-shadow: none" readonly>
         </div>
     </div>
 </div>
