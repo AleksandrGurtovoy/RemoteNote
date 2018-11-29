@@ -3,6 +3,7 @@ package RemoteNote.brules;
 import RemoteNote.model.*;
 import RemoteNote.service.ServiceException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,4 +64,35 @@ public class BusinessRules {
         return notes;
     }
 
+
+    public String getPhoto(String login) {
+        if (Objects.isNull(login)) {
+            throw new ServiceException("Login is null");
+        }
+        String photo;
+        try {
+            photo = userDao.getPhotoByLogin(login);
+        } catch (DaoException ex) {
+            throw new ServiceException(ex, ex.getMessage());
+        }
+        if (Objects.isNull(photo)) {
+            throw new RuntimeException("Photo by login = " + login + " not found");
+        }
+        return photo;
+    }
+
+    public String setPhoto(String login, String photo) {
+        if (Objects.isNull(login)) {
+            throw new ServiceException("Login is null");
+        }
+        if (Objects.isNull(photo)) {
+            throw new ServiceException("photo is null");
+        }
+        try {
+            userDao.setPhotoByLogin(login, photo);
+            return "Ok";
+        } catch (Exception ex) {
+            throw new ServiceException(ex, ex.getMessage());
+        }
+    }
 }

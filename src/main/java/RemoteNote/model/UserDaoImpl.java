@@ -40,4 +40,26 @@ public class UserDaoImpl implements UserDao {
         }
         return result;
     }
+
+    @Override
+    public String getPhotoByLogin(String login) {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        String photo;
+        try {
+            photo = connection.getPhotoByLogin(login);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+        return photo;
+    }
+
+    @Override
+    public void setPhotoByLogin(String login, String photo) {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        try {
+            connection.setPhotoByLogin(login, photo);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+    }
 }
