@@ -28,4 +28,16 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
     }
+
+    @Override
+    public Boolean saveUserData(String login, String fullName, String date) {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        Boolean result = false;
+        try {
+            result = connection.saveUserData(login, fullName, date);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+        return result;
+    }
 }

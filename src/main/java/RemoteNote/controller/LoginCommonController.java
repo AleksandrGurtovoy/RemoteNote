@@ -3,9 +3,6 @@ package RemoteNote.controller;
 import RemoteNote.service.LoginCommonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,15 +23,19 @@ public class LoginCommonController {
         return loginCommonService.authUser(login).toString();
     }
 
+    @ApiOperation(value = "Сохраняет данные пользователя в бд")
+    @RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
+    @ResponseBody
+    public Boolean saveUserData(
+            @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login,
+            @ApiParam(value = "Полное фио", required = true) @RequestParam(name = "fullName") String fullName,
+            @ApiParam(value = "Дата рождения", required = true) @RequestParam(name = "date") String date) throws Exception {
+        return loginCommonService.saveUserData(login, fullName, date);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String mainPage() {
         return "index";
     }
-
-    @RequestMapping(value = "/in", method = RequestMethod.GET)
-    public String secondPage() {
-        return "second";
-    }
-
 
 }

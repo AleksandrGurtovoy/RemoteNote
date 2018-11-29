@@ -23,5 +23,11 @@ public class LoginCommonService {
         jsonObject.put("password", user.getPassword());
         return jsonObject;
     }
+
+    public Boolean saveUserData(String login, String fullName, String date) {
+        LOG.info("saving user data started...");
+        return brules.saveUserData(login, fullName, date);
+    }
+
 }
 
