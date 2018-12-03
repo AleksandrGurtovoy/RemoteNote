@@ -5,6 +5,8 @@ public class User {
     private String login;
     private String fullName;
     private String password;
+    private String dateOfBirthday;
+    private Boolean isStudent;
 
     public String getLogin() {
         return login;
@@ -28,5 +30,22 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDateOfBirthday() {
+        return dateOfBirthday;
+    }
+
+    public void setDateOfBirthday(String dateOfBirthday) {
+        this.dateOfBirthday = dateOfBirthday;
+    }
+
+
+    public Boolean getStudent() {
+        return isStudent;
+    }
+
+    public void setStudent(Boolean student) {
+        isStudent = student;
     }
 }

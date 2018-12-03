@@ -25,6 +25,8 @@ public class LoginCommonService {
         jsonObject.put("login", user.getLogin());
         jsonObject.put("fullName", user.getFullName());
         jsonObject.put("password", user.getPassword());
+        jsonObject.put("dateOfBirthday", user.getDateOfBirthday());
+        jsonObject.put("student", user.getStudent());
         return jsonObject;
     }
 

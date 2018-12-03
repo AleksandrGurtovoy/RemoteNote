@@ -54,6 +54,8 @@ public class DBConnectionImpl {
                 user.setLogin(resultSet.getString("login"));
                 user.setFullName(resultSet.getString("FullName"));
                 user.setPassword(resultSet.getString("password"));
+                user.setDateOfBirthday(resultSet.getString("dateOfBirthday"));
+                user.setStudent(resultSet.getBoolean("isStudent"));
             }
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
