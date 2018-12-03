@@ -1,52 +1,56 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en" ng-controller="MainCtrl">
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript">
-    var fullName = "";
-    var Validation = function () {
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+        <html lang="en" ng-controller="MainCtrl">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript">
+        var fullName = "";
+            var birthdate = "";
+        var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
         $.ajax({
-            url: '/authorizeUser?login=' + login,
-            type: 'GET',
-            success: function (res) {
-                var mas = JSON.parse(res);
-                fullName = mas.fullName;
-                if (mas.password == pass.value) {
-                    $.ajax({
-                        url: '/getPhoto?login=' + login,
-                        type: 'GET',
-                        success: function (res) {
-                            var source = "data:image/jpeg;base64," + res;
-                            document.getElementById("photo").value = res;
-                            document.getElementById("logForm").style.visibility = 'hidden';
-                            document.getElementById("profileBlock").style.visibility = 'visible';
-                            document.getElementById("fullName").value = fullName;
-                            document.getElementById("photo").src = source;
-                        }
-                    })
+        url: '/authorizeUser?login=' + login,
+        type: 'GET',
+        success: function (res) {
+        var mas = JSON.parse(res);
+        fullName = mas.fullName;
+            birthdate = mas.dateOfBirthday;
 
-                } else {
-
-                    alert("Login or password is incorrect")
-                }
-            }
-        });
-    };
-
-    var getUserPhoto = function () {
+        if (mas.password == pass.value) {
         $.ajax({
-            url: '/getPhoto',
-            type: 'GET',
-            templateUrl: 'remoteNote.html'
+        url: '/getPhoto?login=' + login,
+        type: 'GET',
+        success: function (res) {
+        var source = "data:image/jpeg;base64," + res;
+        document.getElementById("photo").value = res;
+        document.getElementById("logForm").style.visibility = 'hidden';
+        document.getElementById("profileBlock").style.visibility = 'visible';
+        document.getElementById("fullName").value = fullName;
+        document.getElementById("photo").src = source;
+            document.getElementById("birthdate").value = birthdate;
+        }
         })
-    }
 
-</script>
-<style>
-    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        } else {
 
-    .btn {
+        alert("Login or password is incorrect")
+        }
+        }
+        });
+        };
+
+        var getUserPhoto = function () {
+        $.ajax({
+        url: '/getPhoto',
+        type: 'GET',
+        templateUrl: 'remoteNote.html'
+        })
+        }
+
+        </script>
+        <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+        .btn {
         display: inline-block;
         *display: inline;
         *zoom: 1;
@@ -78,22 +82,22 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
         cursor: pointer;
         *margin-left: .3em;
-    }
+        }
 
-    .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
+        .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] {
         background-color: #e6e6e6;
-    }
+        }
 
-    .btn-large {
+        .btn-large {
         padding: 9px 14px;
         font-size: 15px;
         line-height: normal;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-    }
+        }
 
-    .btn:hover {
+        .btn:hover {
         color: #333333;
         text-decoration: none;
         background-color: #e6e6e6;
@@ -103,18 +107,18 @@
         -ms-transition: background-position 0.1s linear;
         -o-transition: background-position 0.1s linear;
         transition: background-position 0.1s linear;
-    }
+        }
 
-    .btn-primary, .btn-primary:hover {
+        .btn-primary, .btn-primary:hover {
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
         color: #ffffff;
-    }
+        }
 
-    .btn-primary.active {
+        .btn-primary.active {
         color: rgba(255, 255, 255, 0.75);
-    }
+        }
 
-    .btn-primary {
+        .btn-primary {
         background-color: #4a77d4;
         background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4);
         background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4);
@@ -127,62 +131,73 @@
         border: 1px solid #3762bc;
         text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);
-    }
+        }
 
-    .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+        .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
         filter: none;
         background-color: #4a77d4;
-    }
+        }
 
-    .btn-block {
+        .btn-block {
         width: 100%;
         display: block;
-    }
+        }
 
-    * {
+        * {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         -ms-box-sizing: border-box;
         -o-box-sizing: border-box;
         box-sizing: border-box;
-    }
+        }
 
-    html {
+        html {
         width: 100%;
         height: 100%;
         overflow: hidden;
-    }
+        }
 
-    body {
+        body {
         width: 100%;
         height: 100%;
         font-family: 'Open Sans', sans-serif;
         background: #092756;
-        background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -moz-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);
-        background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -webkit-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
-        background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -o-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -o-linear-gradient(-45deg, #670d10 0%, #092756 100%);
-        background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg, #670d10 0%, #092756 100%);
-        background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);
-    }
+        background: -moz-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0)
+        40%), -moz-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%),
+        -moz-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+        background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0)
+        40%), -webkit-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%),
+        -webkit-linear-gradient(-45deg, #670d10 0%, #092756 100%);
+        background: -o-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%),
+        -o-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -o-linear-gradient(-45deg,
+        #670d10 0%, #092756 100%);
+        background: -ms-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%),
+        -ms-linear-gradient(top, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), -ms-linear-gradient(-45deg,
+        #670d10 0%, #092756 100%);
+        background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0)
+        40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg,
+        #670d10 0%, #092756 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3E1D6D', endColorstr='#092756',
+        GradientType=1);
+        }
 
-    .login {
+        .login {
         position: absolute;
         top: 50%;
         left: 50%;
         margin: -150px 0 0 -150px;
         width: 300px;
         height: 300px;
-    }
+        }
 
-    .login h1 {
+        .login h1 {
         color: #fff;
         text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         letter-spacing: 1px;
         text-align: center;
-    }
+        }
 
-    input {
+        input {
         width: 100%;
         margin-bottom: 10px;
         background: rgba(0, 0, 0, 0.3);
@@ -200,74 +215,127 @@
         -o-transition: box-shadow .5s ease;
         -ms-transition: box-shadow .5s ease;
         transition: box-shadow .5s ease;
-    }
+        }
 
-    input:focus {
+        input:focus {
         box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
-    }
+        }
 
-    .profileBlock {
-        position: absolute;
-        margin-left: 40%;
-    }
+        </style>
 
-    .text-left {
-        font-size: 28px;
-    }
-
-    .form-group {
-        border: 1px;
-        border-radius: 3px;
-    }
-
-    .image-cropper {
-        width: 36px;
-        height: 36px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 50%;
-        vertical-align: middle;
-        margin-left: 5px;
-    }
-
-    .image-cropper img {
-        display: inline;
-        margin: 0 auto;
-        height: 100%;
-        width: auto;
-    }
-
-</style>
-<head>
-    <meta charset="UTF-8">
-    <title>RemoteNote</title>
-</head>
-<body>
-<div id="logForm" class="login">
-    <h1>Login</h1>
-    <input type="text" name="login" id="login" class="form-control" placeholder="Login"
-           style="font-family: 'Courier New';"
-           ng-model="login"/>
-    <input type="text" name="password" id="password" placeholder="Password" class="form-control"
-           style="font-family: 'Courier New';"
-           ng-model="password"/>
-    <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation()">LOGIN</button>
-</div>
-
-<div class="profileBlock" id="profileBlock" style="visibility: hidden;">
-    <div class="text-left">
-        <h4 translate>Your Profile</h4>
-    </div>
-    <img id="photo" src="" width="200" height="300"
-         style="margin-left: -530px; position: absolute; border: 5px solid black;">
-    <div class="form-group">
-        <div class="userName" style="margin-left: -300px; margin-top: 30px;">
-            <span style="font-size: 24px; color: black">Full name: </span>
-            <input id="fullName" style="margin-left: 150px; margin-top:-38px; font-size: 24px; border-radius: 0px;
-             box-shadow: none" readonly>
+        <head>
+        <meta charset="UTF-8">
+        <title>RemoteNote</title>
+        </head>
+        <body>
+        <div id="logForm" class="login">
+        <h1>Login</h1>
+        <input type="text" name="login" id="login" class="form-control" placeholder="Login"
+        style="font-family: 'Courier New';"
+        ng-model="login"/>
+        <input type="text" name="password" id="password" placeholder="Password" class="form-control"
+        style="font-family: 'Courier New';"
+        ng-model="password"/>
+        <button type="submit" class="btn btn-primary btn-block btn-large" onclick="Validation()">LOGIN</button>
         </div>
-    </div>
-</div>
 
-</body>
-</html>
+        <!--
+        <div class="profileBlock" id="profileBlock" style="visibility: hidden;">
+        <div class="text-left">
+        <h4 translate>Your Profile</h4>
+        </div>
+        <img id="photo" src="" width="200" height="300"
+        style="margin-left: -530px; position: absolute; border: 5px solid black;">
+        <div class="form-group">
+        <div class="userName" style="margin-left: -300px; margin-top: 30px;">
+        <span style="font-size: 24px; color: black">Full name: </span>
+        <input id="fullName" style="margin-left: 150px; margin-top:-38px; font-size: 24px; border-radius: 0px;
+        box-shadow: none" readonly>
+        </div>
+        </div>
+        </div>
+        -->
+        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 300px; width: 400px; height: 300px;
+        background-color: rgba(255,255,255, 0.5);
+        border: 3px solid white; border-radius: 8px; text-align: center; color: white;
+        font-size: 23px">
+        <div>Your Profile</div>
+        <img id="photo" src=""
+        style="position: absolute; left: 20px; width: 50px; height: 50px; border-radius: 50%; vertical-align: middle;">
+        <div class="form-group" style="position: absolute">
+        <span style="position: absolute; top: 60px; width: 150px;">Full name: </span>
+        <input id="fullName" style="position: absolute; top: 60px; background-color: rgba(255,255,255, 0.5);
+        margin-left: 160px; border-radius: 8px; width: 220px;" readonly>
+        <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Current time: </span>
+        <label id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
+        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px"></label>
+        <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
+        <input type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color:
+        transparent;
+        margin-left: 177px;">
+
+        </div>
+        <button id="toNotes" onclick="toNotes()"
+        style="position: relative; margin-top: 200px; width: 150px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">Go to my Notes
+        </button>
+        <button id="createNote" onclick="createNote()"
+        style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">Create Note
+        </button>
+        </div>
+
+        <div id="createNoteForm" style="position: absolute; width: 400px; height: 200px; background-color:
+        rgba(255,255,255, 0.5);
+        border: 3px solid white; border-radius: 8px; text-align: center; color: white;
+        font-size: 23px">Create Note
+        <div>
+        <textarea style="opacity: 0.5; width: 94%; height: 75px;"></textarea>
+        <button onclick="save()"
+        style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">Save</button>
+        <button onclick="goBack()"
+        style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">Go back</button>
+        </div>
+
+        </div>
+
+        <div id="noteBody"
+        style="position: absolute; margin-left: 40%; color: white; font-size: 23px;
+        z-index: 10; text-align: center">
+
+        <div style="position: absolute; width: 300px; height: 600px; border: 3px solid white; border-radius: 6px;
+        background-color: rgba(255,255,255, 0.4)">
+        <div style="position: absolute;width: 100%; height: 50px; z-index: 1;
+        border-bottom: 3px solid white;">Notes
+
+        </div>
+
+        </div>
+        <div style="position: absolute; margin-left: 295px; width: 500px; height: 600px; border: 3px solid white;
+        border-radius: 6px; background-color: rgba(255,255,255, 0.4)">
+        <div style="position: relative; width: 100%; height: 50px;
+        border-bottom: 3px solid white">Change your note
+        </div>
+
+        <div style="position: relative;width: 100%; height: 150px; border-bottom: 3px solid white; padding-top: 15px">
+        <textarea id="textarea" style="opacity: 0.5; width: 94%; height: 75px"></textarea>
+        <button onclick="edit()"
+        style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px">Edit</button>
+        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px">Save</button>
+        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px">Delete</button>
+        </div>
+
+        </div>
+        <button onclick="goBack()"
+        style="position: absolute; width: 100px; height: 30px; background-color: rosybrown;
+        top: 650px;
+        border: 1px solid white; border-radius: 8px; color: white">Go back</button>
+        </div>
+
+        </body>
+        </html>
