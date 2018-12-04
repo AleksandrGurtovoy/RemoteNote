@@ -31,4 +31,13 @@ public class NotesCommonController {
             @ApiParam(value = "Логин", required = true) @RequestParam Long id) throws Exception {
         notesCommonService.saveNote(name, text, id);
     }
+
+    @ApiOperation(value = "Сохраняет запись в бд")
+    @RequestMapping(value = "/updateNote", method = RequestMethod.GET)
+    public void updateNote(
+            @ApiParam(value = "Логин", required = true) @RequestParam String name,
+            @ApiParam(value = "Логин", required = true) @RequestParam String text,
+            @ApiParam(value = "Логин", required = true) @RequestParam Long id) throws Exception {
+        notesCommonService.updateNote(name, text, id);
+    }
 }

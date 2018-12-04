@@ -128,19 +128,27 @@ public class DBConnectionImpl {
 
     public void saveNote(Note note) {
         LOG.info("DBConnectionImpl, saving note with id " + note.getId() + "started...");
-        String nameQuery = "updateNote";
-        if (note.getId().equals(0L)) {
-            nameQuery = "saveNote";
-        }
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery(nameQuery))) {
+             PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("saveNote"))) {
+            preparedStatement.setLong(1, note.getId());
+            preparedStatement.setString(2, note.getBody());
+            preparedStatement.setString(3, note.getTitle());
+            preparedStatement.setLong(4, 1L);
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            LOG.error(ex.getMessage());
+            throw new DaoException(ex, ex.getMessage());
+        }
+    }
+
+    public void updateNote(Note note) {
+        LOG.info("DBConnectionImpl, updating note with id " + note.getId() + "started...");
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("updateNote"))) {
             preparedStatement.setLong(1, note.getId());
             preparedStatement.setString(2, note.getTitle());
             preparedStatement.setString(3, note.getBody());
             preparedStatement.setLong(4, 1L);
-            if(nameQuery.equals("updateNote")){
-                preparedStatement.setLong(3, note.getId());
-            }
             preparedStatement.execute();
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());

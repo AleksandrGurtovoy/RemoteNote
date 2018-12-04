@@ -25,4 +25,13 @@ public class NotesCommonService {
         note.setId(id);
         businessRules.saveNote(note);
     }
+
+    public void updateNote(String name, String text, Long id){
+        LOG.info("NotesCommonService, updating note started");
+        Note note = new Note();
+        note.setTitle(name);
+        note.setBody(text);
+        note.setId(id);
+        businessRules.updateNote(note);
+    }
 }
