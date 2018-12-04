@@ -114,4 +114,24 @@ public class BusinessRules {
         throw new ServiceException(ex, ex.getMessage());
     }
     }
+
+    public void updateNote(Note note){
+        if(Objects.isNull(note)){
+            throw new ServiceException("note is null");
+        }
+        if(Objects.isNull(note.getBody())){
+            throw new ServiceException("body is null");
+        }
+        if(Objects.isNull(note.getId())){
+            throw new ServiceException("id is null");
+        }
+        if(Objects.isNull(note.getTitle())){
+            throw new ServiceException("title is null");
+        }
+        try{
+            noteDao.updateNote(note);
+        } catch (Exception ex) {
+            throw new ServiceException(ex, ex.getMessage());
+        }
+    }
 }

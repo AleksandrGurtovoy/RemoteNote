@@ -24,9 +24,20 @@ public class NotesCommonController {
     }
 
     @ApiOperation(value = "Сохраняет запись в бд")
-    @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveNote", method = RequestMethod.GET)
     public void saveNote(
-            @ApiParam(value = "Логин", required = true) @RequestBody Note note) throws Exception {
-        notesCommonService.saveNote(note);
+            @ApiParam(value = "Логин", required = true) @RequestParam String name,
+            @ApiParam(value = "Логин", required = true) @RequestParam String text,
+            @ApiParam(value = "Логин", required = true) @RequestParam Long id) throws Exception {
+        notesCommonService.saveNote(name, text, id);
+    }
+
+    @ApiOperation(value = "Сохраняет запись в бд")
+    @RequestMapping(value = "/updateNote", method = RequestMethod.GET)
+    public void updateNote(
+            @ApiParam(value = "Логин", required = true) @RequestParam String name,
+            @ApiParam(value = "Логин", required = true) @RequestParam String text,
+            @ApiParam(value = "Логин", required = true) @RequestParam Long id) throws Exception {
+        notesCommonService.updateNote(name, text, id);
     }
 }

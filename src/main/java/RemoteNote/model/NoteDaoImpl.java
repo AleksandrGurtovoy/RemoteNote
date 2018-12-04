@@ -29,4 +29,14 @@ public class NoteDaoImpl implements NoteDao {
             throw new DaoException(ex, ex.getMessage());
         }
     }
+
+    @Override
+    public void updateNote(Note note) {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        try {
+            connection.updateNote(note);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
+    }
 }
