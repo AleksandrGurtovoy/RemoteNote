@@ -4,6 +4,7 @@
         <script type="text/javascript">
         var fullName = "";
             var birthdate = "";
+            var student = false;
         var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
@@ -14,6 +15,7 @@
         var mas = JSON.parse(res);
         fullName = mas.fullName;
             birthdate = mas.dateOfBirthday;
+            student = mas.student;
 
         if (mas.password == pass.value) {
         $.ajax({
@@ -27,6 +29,9 @@
         document.getElementById("fullName").value = fullName;
         document.getElementById("photo").src = source;
             document.getElementById("birthdate").value = birthdate;
+            if (student == true) {
+            document.getElementById("checkbox").checked;
+            }
         }
         })
 
@@ -270,7 +275,7 @@
         <label id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
         margin-left: 177px; border-radius: 8px; width: 200px; height: 37px"></label>
         <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
-        <input type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color:
+        <input id="checkbox" type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color:
         transparent;
         margin-left: 177px;">
 
