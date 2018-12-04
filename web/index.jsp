@@ -80,6 +80,20 @@
             third.style.visibility = 'visible';
             }
             else third.style.visibility = 'hidden';
+
+            (function() {
+            var arr = [ 'Первая строка', 'Вторая строка', 'Третья строка' ],
+            elem = document.getElementById("notesList"), i = 0;
+            return function() {
+            for(i; i < arr.length; i++) {
+            if ( i < arr.length ) {
+            elem.innerHTML += arr[ i ] + '<br>';
+
+            }
+            }
+
+            }();
+            })();
             }
 
             function createNote () {
@@ -363,7 +377,7 @@
         </button>
         </div>
 
-        <div id="createNoteForm" style="visibility: hidden; position: absolute; width: 400px; height: 200px;
+        <div id="createNoteForm" style="visibility: hidden; position: absolute; width: 400px; height: 300px;
         background-color:
         rgba(255,255,255, 0.5);
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
@@ -387,13 +401,12 @@
         style="visibility: hidden; position: absolute; margin-left: 40%; color: white; font-size: 23px;
         z-index: 10; text-align: center">
 
-        <div style="position: absolute; width: 300px; height: 600px; border: 3px solid white; border-radius: 6px;
+        <div id="notesList" style="position: absolute; width: 300px; height: 600px; border: 3px solid white; border-radius: 6px;
         background-color: rgba(255,255,255, 0.4)">
         <div style="position: absolute;width: 100%; height: 50px; z-index: 1;
         border-bottom: 3px solid white;">Notes
-
         </div>
-
+            <br>
         </div>
         <div style="position: absolute; margin-left: 295px; width: 500px; height: 600px; border: 3px solid white;
         border-radius: 6px; background-color: rgba(255,255,255, 0.4)">
