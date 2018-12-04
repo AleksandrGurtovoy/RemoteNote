@@ -85,25 +85,21 @@
             function createNote () {
             var first = document.getElementById('profileBlock');
             var second = document.getElementById('noteBody');
-            var third = document.getElemntById('createNoteForm');
+            var third = document.getElementById('createNoteForm');
             first.style.visibility = 'hidden';
             second.style.visibility = 'hidden';
             third.style.visibility = 'visible';
             }
 
-            function save () {
-            var noteName = document.getElementById('noteName');
-            var noteText = document.getElementById('noteText');
-            var noteData = {
-            "noteName": noteName,
-            "noteText": noteText
-            };
+        function save() {
+            var noteName = document.getElementById('noteName').value;
+            var noteText = document.getElementById('noteText').value;
+            var id = Math.floor((Math.random() * 100) + 1);
             $.ajax({
-            url: '/saveUserData?login=&fullName=&date=',
-            type: 'POST',
-            data: 'json=' + JSON.stringify(noteData)
+                url: '/notes/saveNote?id=' + id + '&name=' + noteName + '&text=' + noteText,
+                type: 'GET',
             });
-            }
+        }
 
             function goBack () {
             var first = document.getElementById('profileBlock');

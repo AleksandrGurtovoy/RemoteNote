@@ -134,8 +134,10 @@ public class DBConnectionImpl {
         }
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery(nameQuery))) {
-            preparedStatement.setString(1, note.getBody());
+            preparedStatement.setLong(1, note.getId());
             preparedStatement.setString(2, note.getTitle());
+            preparedStatement.setString(3, note.getBody());
+            preparedStatement.setLong(4, 1L);
             if(nameQuery.equals("updateNote")){
                 preparedStatement.setLong(3, note.getId());
             }

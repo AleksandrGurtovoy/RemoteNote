@@ -17,8 +17,12 @@ public class NotesCommonService {
         return businessRules.getNotesByLogin(id);
     }
 
-    public void saveNote(Note note){
+    public void saveNote(String name, String text, Long id){
         LOG.info("NotesCommonService, saving note started");
+        Note note = new Note();
+        note.setTitle(name);
+        note.setBody(text);
+        note.setId(id);
         businessRules.saveNote(note);
     }
 }
