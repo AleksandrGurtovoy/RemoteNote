@@ -32,7 +32,7 @@
         document.getElementById("photo").src = source;
             document.getElementById("birthdate").value = birthdate;
             if (student == true) {
-            document.getElementById("checkbox").checked;
+            document.getElementById("checkbox").checked = true;
             }
         }
         })
@@ -290,6 +290,10 @@
         style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Create Note
         </button>
+            <button id="editProfile" onclick="createNote()"
+            style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
+            border: 1px solid white; border-radius: 8px; color: white">Edit Profile
+            </button>
         </div>
 
         <div id="createNoteForm" style="visibility: hidden; position: absolute; width: 400px; height: 200px; background-color:
