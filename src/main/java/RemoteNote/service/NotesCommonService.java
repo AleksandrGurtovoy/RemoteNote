@@ -12,8 +12,8 @@ public class NotesCommonService {
     private static final Logger LOG = Logger.getLogger(NotesCommonService.class);
     private BusinessRules businessRules = new BusinessRules();
 
-    public List<Note> getNotes(String login) {
-        LOG.info("NotesCommonService, getting notes by login " + login + " started");
-        return businessRules.getNotesByLogin(login);
+    public List<Note> getNotes(Long id) {
+        LOG.info("NotesCommonService, getting notes by id " + id + " started");
+        return businessRules.getNotesByLogin(id);
     }
 }
