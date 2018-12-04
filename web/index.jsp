@@ -4,7 +4,7 @@
         <script type="text/javascript">
         var fullName = "";
             var birthdate = "";
-            var student = false;
+            var student;
             var id;
         var Validation = function () {
         var login = document.getElementById('login').value;
