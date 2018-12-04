@@ -51,13 +51,13 @@ public class BusinessRules {
         return result;
     }
 
-    public List<Note> getNotesByLogin(String login) {
-        if (Objects.isNull(login)) {
+    public List<Note> getNotesByLogin(Long id) {
+        if (Objects.isNull(id)) {
             throw new RuntimeException("Login must be not null");
         }
         List<Note> notes = new ArrayList<>();
         try {
-            notes = noteDao.getNotesByLogin(login);
+            notes = noteDao.getNotesByLogin(id);
         } catch (DaoException ex) {
             throw new ServiceException(ex, ex.getMessage());
         }

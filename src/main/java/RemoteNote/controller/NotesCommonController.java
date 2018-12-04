@@ -22,7 +22,7 @@ public class NotesCommonController {
     @RequestMapping(value = "/getNotes", method = RequestMethod.GET)
     @ResponseBody
     public List<Note> getNotes(
-            @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login) throws Exception {
-        return notesCommonService.getNotes(login);
+            @ApiParam(value = "Логин", required = true) @RequestParam(name = "id") Long id) throws Exception {
+        return notesCommonService.getNotes(id);
     }
 }

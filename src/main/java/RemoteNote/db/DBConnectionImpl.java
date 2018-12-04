@@ -56,6 +56,7 @@ public class DBConnectionImpl {
                 user.setPassword(resultSet.getString("password"));
                 user.setDateOfBirthday(resultSet.getString("dateOfBirthday"));
                 user.setStudent(resultSet.getBoolean("student"));
+                user.setId(resultSet.getLong("id"));
             }
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
@@ -107,12 +108,12 @@ public class DBConnectionImpl {
         return resultOfQuery;
     }
 
-    public List<Note> getNotesByLogin(String login) {
-        LOG.info("DBConnectionImpl, getting notes by login " + login + "started...");
+    public List<Note> getNotesByLogin(Long id) {
+        LOG.info("DBConnectionImpl, getting notes by id " + id + "started...");
         List<Note> notes = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("getNotesByName"))) {
-            preparedStatement.setString(1, login);
+            preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Note note = new Note();
