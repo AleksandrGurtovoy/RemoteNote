@@ -87,7 +87,7 @@ public class DBConnectionImpl {
                      dbconnection.getQuery("setPhotoByLogin"))) {
             preparedStatement.setString(1, photo);
             preparedStatement.setString(2, login);
-            preparedStatement.executeQuery();
+            preparedStatement.execute();
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
@@ -117,14 +117,34 @@ public class DBConnectionImpl {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Note note = new Note();
-                note.setBody(resultSet.getString("Text"));
-                note.setTitle(resultSet.getString("Name"));
+                note.setBody(resultSet.getString("text"));
+                note.setTitle(resultSet.getString("name"));
+                note.setId(resultSet.getLong("id"));
                 notes.add(note);
             }
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
         return notes;
+    }
+
+    public void saveNote(Note note) {
+        LOG.info("DBConnectionImpl, saving note with id " + note.getId() + "started...");
+        String nameQuery = "updateNote";
+        if (note.getId().equals(0L)) {
+            nameQuery = "saveNote";
+        }
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery(nameQuery))) {
+            preparedStatement.setString(1, note.getBody());
+            preparedStatement.setString(2, note.getTitle());
+            if(nameQuery.equals("updateNote")){
+                preparedStatement.setLong(3, note.getId());
+            }
+            preparedStatement.execute();
+        } catch (SQLException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
     }
 
 }

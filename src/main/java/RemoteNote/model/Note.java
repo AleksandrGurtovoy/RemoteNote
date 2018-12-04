@@ -1,6 +1,7 @@
 package RemoteNote.model;
 
 public class Note {
+    private Long id;
     private String title;
     private String body;
 
@@ -20,4 +21,11 @@ public class Note {
         this.body = body;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

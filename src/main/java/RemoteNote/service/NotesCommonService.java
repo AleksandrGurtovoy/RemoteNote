@@ -16,4 +16,9 @@ public class NotesCommonService {
         LOG.info("NotesCommonService, getting notes by id " + id + " started");
         return businessRules.getNotesByLogin(id);
     }
+
+    public void saveNote(Note note){
+        LOG.info("NotesCommonService, saving note started");
+        businessRules.saveNote(note);
+    }
 }

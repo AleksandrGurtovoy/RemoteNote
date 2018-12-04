@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class NoteDaoImpl implements NoteDao{
+public class NoteDaoImpl implements NoteDao {
     @Override
     public List<Note> getNotesByLogin(Long id) {
         DBConnectionImpl connection = new DBConnectionImpl();
@@ -18,5 +18,15 @@ public class NoteDaoImpl implements NoteDao{
             throw new DaoException(ex, ex.getMessage());
         }
         return notes;
+    }
+
+    @Override
+    public void saveNote(Note note) {
+        DBConnectionImpl connection = new DBConnectionImpl();
+        try {
+            connection.saveNote(note);
+        } catch (DaoException ex) {
+            throw new DaoException(ex, ex.getMessage());
+        }
     }
 }

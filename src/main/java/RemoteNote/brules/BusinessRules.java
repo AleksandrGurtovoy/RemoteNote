@@ -3,7 +3,6 @@ package RemoteNote.brules;
 import RemoteNote.model.*;
 import RemoteNote.service.ServiceException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,5 +93,25 @@ public class BusinessRules {
         } catch (Exception ex) {
             throw new ServiceException(ex, ex.getMessage());
         }
+    }
+
+    public void saveNote(Note note){
+        if(Objects.isNull(note)){
+            throw new ServiceException("note is null");
+        }
+        if(Objects.isNull(note.getBody())){
+            throw new ServiceException("body is null");
+        }
+        if(Objects.isNull(note.getId())){
+            throw new ServiceException("id is null");
+        }
+        if(Objects.isNull(note.getTitle())){
+            throw new ServiceException("title is null");
+        }
+        try{
+
+        } catch (Exception ex) {
+        throw new ServiceException(ex, ex.getMessage());
+    }
     }
 }

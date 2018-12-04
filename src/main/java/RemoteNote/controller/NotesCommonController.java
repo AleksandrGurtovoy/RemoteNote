@@ -5,10 +5,7 @@ import RemoteNote.service.NotesCommonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,12 @@ public class NotesCommonController {
     public List<Note> getNotes(
             @ApiParam(value = "Логин", required = true) @RequestParam(name = "id") Long id) throws Exception {
         return notesCommonService.getNotes(id);
+    }
+
+    @ApiOperation(value = "Сохраняет запись в бд")
+    @RequestMapping(value = "/saveNote", method = RequestMethod.POST)
+    public void saveNote(
+            @ApiParam(value = "Логин", required = true) @RequestBody Note note) throws Exception {
+        notesCommonService.saveNote(note);
     }
 }
