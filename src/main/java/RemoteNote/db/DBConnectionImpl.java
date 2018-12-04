@@ -93,19 +93,17 @@ public class DBConnectionImpl {
         }
     }
 
-    public Boolean saveUserData(String login, String fullName, String date) {
+    public void saveUserData(String login, String fullName, String date) {
         LOG.info("DBConnectionImpl, saving user data with login " + login + "started...");
-        Boolean resultOfQuery = false;
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("saveUser"))) {
             preparedStatement.setString(1, fullName);
             preparedStatement.setString(2, date);
             preparedStatement.setString(3, login);
-            resultOfQuery = preparedStatement.execute();
+            preparedStatement.execute();
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
-        return resultOfQuery;
     }
 
     public List<Note> getNotesByLogin(Long id) {

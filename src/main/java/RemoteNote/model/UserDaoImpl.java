@@ -30,15 +30,14 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Boolean saveUserData(String login, String fullName, String date) {
+    public void saveUserData(String login, String fullName, String date) {
         DBConnectionImpl connection = new DBConnectionImpl();
-        Boolean result = false;
         try {
-            result = connection.saveUserData(login, fullName, date);
+            connection.saveUserData(login, fullName, date);
         } catch (DaoException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
-        return result;
+
     }
 
     @Override

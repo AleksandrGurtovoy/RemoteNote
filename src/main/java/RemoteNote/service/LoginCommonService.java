@@ -31,9 +31,9 @@ public class LoginCommonService {
         return jsonObject;
     }
 
-    public Boolean saveUserData(String login, String fullName, String date) {
+    public void saveUserData(String login, String fullName, String date) {
         LOG.info("saving user data started...");
-        return brules.saveUserData(login, fullName, date);
+         brules.saveUserData(login, fullName, date);
     }
 
 

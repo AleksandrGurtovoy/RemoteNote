@@ -6,8 +6,9 @@
         var birthdate = "";
         var student;
         var id;
+        var login;
         var Validation = function () {
-        var login = document.getElementById('login').value;
+        login = document.getElementById('login').value;
         var pass = document.getElementById('password');
         $.ajax({
         url: '/authorizeUser?login=' + login,
@@ -62,15 +63,10 @@
         function saveEdit () {
         var fullNameForm = document.getElementById('fullName').value;
         var birthdateForm = document.getElementById('birthdate').value;
-        var myData = {
-        "firstName": fullNameForm,
-        "birthdate": birthdateForm
-        };
 
         $.ajax({
-        url: '/saveUserData?login=' + login '&fullName=' + fullName + '&date=' + birtdate,
-        type: 'POST',
-        data: 'json=' + JSON.stringify(myData)
+        url: '/saveUserData?login=' + login +'&fullName=' + fullNameForm + '&date=' + birthdateForm,
+        type: 'POST'
         });
         }
             function toNotes () {

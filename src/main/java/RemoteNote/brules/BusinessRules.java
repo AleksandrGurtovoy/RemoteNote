@@ -31,7 +31,7 @@ public class BusinessRules {
         return user;
     }
 
-    public Boolean saveUserData(String login, String fullName, String date) {
+    public void saveUserData(String login, String fullName, String date) {
         if (Objects.isNull(fullName)) {
             fullName = "";
         }
@@ -41,13 +41,13 @@ public class BusinessRules {
         if (Objects.isNull(login)) {
             throw new RuntimeException("Login must be not null");
         }
-        Boolean result = false;
+
         try {
-            result = userDao.saveUserData(login, fullName, date);
+            userDao.saveUserData(login, fullName, date);
         } catch (DaoException ex) {
             throw new ServiceException(ex, ex.getMessage());
         }
-        return result;
+
     }
 
     public List<Note> getNotesByLogin(Long id) {

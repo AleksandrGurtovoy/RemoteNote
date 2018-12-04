@@ -5,7 +5,7 @@ public interface UserDao {
 
     User getUserByLogin(String login);
 
-    Boolean saveUserData(String login, String fullName, String date);
+    void saveUserData(String login, String fullName, String date);
 
     String getPhotoByLogin(String login);
 

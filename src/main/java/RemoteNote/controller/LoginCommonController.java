@@ -46,11 +46,11 @@ public class LoginCommonController {
     @ApiOperation(value = "Сохраняет данные пользователя в бд")
     @RequestMapping(value = "/saveUserData", method = RequestMethod.POST)
     @ResponseBody
-    public Boolean saveUserData(
+    public void saveUserData(
             @ApiParam(value = "Логин", required = true) @RequestParam(name = "login") String login,
             @ApiParam(value = "Полное фио", required = true) @RequestParam(name = "fullName") String fullName,
             @ApiParam(value = "Дата рождения", required = true) @RequestParam(name = "date") String date) throws Exception {
-        return loginCommonService.saveUserData(login, fullName, date);
+         loginCommonService.saveUserData(login, fullName, date);
     }
 
     @RequestMapping(method = RequestMethod.GET)
