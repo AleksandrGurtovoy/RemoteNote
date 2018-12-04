@@ -5,6 +5,7 @@
         var fullName = "";
             var birthdate = "";
             var student = false;
+            var id;
         var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
@@ -16,6 +17,7 @@
         fullName = mas.fullName;
             birthdate = mas.dateOfBirthday;
             student = mas.student;
+            id = mas.id;
 
         if (mas.password == pass.value) {
         $.ajax({
