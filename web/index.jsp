@@ -9,8 +9,6 @@
         var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
-            var fullNameForm = document.getElementById('fullName').value;
-            var birthdateForm = document.getElementById('birthdate').value;
         $.ajax({
         url: '/authorizeUser?login=' + login,
         type: 'GET',
@@ -59,6 +57,19 @@
              document.getElementById("saveEdit").style.visibility = 'visible';
              document.getElementsByTagName("input").prop("readonly", false);
             }
+
+            function save () {
+            $.ajax({
+            url: '/saveUserData?login=&fullName=&date=',
+            type: 'POST',
+            success: function (res) {
+            var fullNameForm = document.getElementById('fullName').value;
+            var birthdateForm = document.getElementById('birthdate').value;
+            }
+            });
+            }
+
+
 
         </script>
         <style>
