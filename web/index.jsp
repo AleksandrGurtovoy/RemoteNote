@@ -81,19 +81,28 @@
             }
             else third.style.visibility = 'hidden';
 
-            (function() {
-            var arr = [ 'Первая строка', 'Вторая строка', 'Третья строка' ],
-            elem = document.getElementById("notesList"), i = 0;
-            return function() {
-            for(i; i < arr.length; i++) {
-            if ( i < arr.length ) {
-            elem.innerHTML += arr[ i ] + '<br>';
+                $.ajax({
+                    url: '/notes/getNotes?id=' + id,
+                    type: 'GET',
+                    success: function (res) {
+                        var mas = JSON.parse(res);
+                        var arr = ['Первая строка', 'Вторая строка', 'Третья строка'];
+                        for (j in mas.title) {
+                                arr.push(j)
 
-            }
-            }
+                        }
+                        elem = document.getElementById("notesList"), i = 0;
+                        return function () {
+                            for (i; i < arr.length; i++) {
+                                if (i < arr.length) {
+                                    elem.innerHTML += arr[i] + '<br>';
 
-            }();
-            })();
+                                }
+                            }
+
+                        }();
+                    }
+                })
             }
 
             function createNote () {

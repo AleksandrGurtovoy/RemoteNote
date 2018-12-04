@@ -34,4 +34,10 @@ public class NotesCommonService {
         note.setId(id);
         businessRules.updateNote(note);
     }
+
+    public void deleteNote(Long id){
+        LOG.info("NotesCommonService, removing note started");
+      //  businessRules.deleteNote(note);
+    }
+
 }

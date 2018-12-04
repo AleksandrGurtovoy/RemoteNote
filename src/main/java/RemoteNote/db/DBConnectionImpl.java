@@ -123,6 +123,7 @@ public class DBConnectionImpl {
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());
         }
+        LOG.info("return list count = " + notes.size());
         return notes;
     }
 
@@ -145,10 +146,9 @@ public class DBConnectionImpl {
         LOG.info("DBConnectionImpl, updating note with id " + note.getId() + "started...");
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(dbconnection.getQuery("updateNote"))) {
-            preparedStatement.setLong(1, note.getId());
-            preparedStatement.setString(2, note.getTitle());
-            preparedStatement.setString(3, note.getBody());
-            preparedStatement.setLong(4, 1L);
+            preparedStatement.setString(1, note.getTitle());
+            preparedStatement.setString(2, note.getBody());
+            preparedStatement.setLong(3, 1L);
             preparedStatement.execute();
         } catch (SQLException ex) {
             throw new DaoException(ex, ex.getMessage());

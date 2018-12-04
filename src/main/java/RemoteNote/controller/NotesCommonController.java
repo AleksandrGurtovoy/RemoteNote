@@ -40,4 +40,10 @@ public class NotesCommonController {
             @ApiParam(value = "Логин", required = true) @RequestParam Long id) throws Exception {
         notesCommonService.updateNote(name, text, id);
     }
+
+    @ApiOperation(value = "Сохраняет запись в бд")
+    @RequestMapping(value = "/deleteNote", method = RequestMethod.GET)
+    public void deleteNote(@ApiParam(value = "id", required = true) @RequestParam Long id) throws Exception {
+        notesCommonService.deleteNote(id);
+    }
 }
