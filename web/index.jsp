@@ -25,7 +25,7 @@
         var source = "data:image/jpeg;base64," + res;
         document.getElementById("photo").value = res;
         document.getElementById("logForm").style.visibility = 'hidden';
-        document.getElementById("profileBlock").style.visibility = 'visible';
+        document.getElementById("profileBlock").style.display = 'inline';
         document.getElementById("fullName").value = fullName;
         document.getElementById("photo").src = source;
             document.getElementById("birthdate").value = birthdate;
@@ -290,7 +290,7 @@
         </button>
         </div>
 
-        <div id="createNoteForm" style="position: absolute; width: 400px; height: 200px; background-color:
+        <div id="createNoteForm" style="display: none; position: absolute; width: 400px; height: 200px; background-color:
         rgba(255,255,255, 0.5);
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
         font-size: 23px">Create Note
@@ -307,7 +307,7 @@
         </div>
 
         <div id="noteBody"
-        style="position: absolute; margin-left: 40%; color: white; font-size: 23px;
+        style="display: none; position: absolute; margin-left: 40%; color: white; font-size: 23px;
         z-index: 10; text-align: center">
 
         <div style="position: absolute; width: 300px; height: 600px; border: 3px solid white; border-radius: 6px;
