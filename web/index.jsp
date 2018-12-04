@@ -53,7 +53,7 @@
         })
         };
 
-        function edit () {
+        function editProfile () {
         document.getElementById("saveEdit").style.visibility = 'visible';
         document.getElementById("fullName").disabled = false;
         document.getElementById("birthdate").disabled = false;
@@ -68,7 +68,7 @@
         };
 
         $.ajax({
-        url: '/saveUserData?login=&fullName=&date=',
+        url: '/saveUserData?login=' + login '&fullName=' + fullName + '&date=' + birtdate,
         type: 'POST',
         data: 'json=' + JSON.stringify(myData)
         });
@@ -93,6 +93,26 @@
             second.style.visibility = 'hidden';
             }
 
+            function save () {
+            var noteName = document.getElementById('noteName');
+            var noteText = document.getElementById('noteText');
+            var noteData = {
+            "noteName": noteName,
+            "noteText": noteText
+            };
+            $.ajax({
+            url: '/saveUserData?login=&fullName=&date=',
+            type: 'POST',
+            data: 'json=' + JSON.stringify(noteData)
+            });
+            }
+
+            function goBack () {
+            var first = document.getElementById('profileBlock');
+            var second = document.getElementById('createNoteForm');
+            first.style.visibility = 'visible';
+            second.style.visibility = 'hidden';
+            }
 
 
 
@@ -334,7 +354,7 @@
         style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Create Note
         </button>
-        <button id="editProfile" onclick="edit()"
+        <button id="editProfile" onclick="editProfile()"
         style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Edit Profile
         </button>
@@ -351,7 +371,10 @@
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
         font-size: 23px">Create Note
         <div>
-        <textarea style="opacity: 0.5; width: 94%; height: 75px;"></textarea>
+            <label>Name of notes:</label>
+            <input id="noteName" style="opacity: 0.5; width: 94%; height: 25px;">
+            <label>Text:</label>
+            <input id="noteText" style="opacity: 0.5; width: 94%; height: 25px;">
         <button onclick="save()"
         style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Save</button>
