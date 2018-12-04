@@ -85,8 +85,10 @@
             function createNote () {
             var first = document.getElementById('profileBlock');
             var second = document.getElementById('noteBody');
+            var third = document.getElemntById('createNoteForm');
             first.style.visibility = 'hidden';
             second.style.visibility = 'hidden';
+            third.style.visibility = 'visible';
             }
 
             function save () {
@@ -321,7 +323,7 @@
         </div>
         </div>
         -->
-        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 50px; width: 400px; height:
+        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 50px; width: 500px; height:
         300px;
         background-color: rgba(255,255,255, 0.5);
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
@@ -343,19 +345,19 @@
 
         </div>
         <button id="toNotes" onclick="toNotes()"
-        style="position: relative; margin-top: 200px; width: 150px; height: 30px; background-color: rosybrown;
-        border: 1px solid white; border-radius: 8px; color: white">Go to my Notes
+        style="position: relative; margin-top: 200px; width: 70px; height: 30px; background-color: rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">To my Notes
         </button>
         <button id="createNote" onclick="createNote()"
-        style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
+        style="position: relative; margin-top: 200px; width: 70px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Create Note
         </button>
         <button id="editProfile" onclick="editProfile()"
-        style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
+        style="position: relative; margin-top: 200px; width: 70px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Edit Profile
         </button>
         <button id="saveEdit" onclick="saveEdit()"
-        style="visibility: hidden; position: relative; margin-top: 200px; width: 50px; height: 30px; background-color:
+        style="visibility: hidden; position: relative; margin-top: 200px; width: 70px; height: 30px; background-color:
         rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Save Edit
         </button>
