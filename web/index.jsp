@@ -53,21 +53,46 @@
         })
         };
 
-            function edit () {
-             document.getElementById("saveEdit").style.visibility = 'visible';
-             document.getElementsByTagName("input").prop("readonly", false);
+        function edit () {
+        document.getElementById("saveEdit").style.visibility = 'visible';
+        document.getElementById("fullName").disabled = false;
+        document.getElementById("birthdate").disabled = false;
+        }
+
+        function saveEdit () {
+        var fullNameForm = document.getElementById('fullName').value;
+        var birthdateForm = document.getElementById('birthdate').value;
+        var myData = {
+        "firstName": fullNameForm,
+        "birthdate": birthdateForm
+        };
+
+        $.ajax({
+        url: '/saveUserData?login=&fullName=&date=',
+        type: 'POST',
+        data: 'json=' + JSON.stringify(myData)
+        });
+        }
+            function toNotes () {
+            var first = document.getElementById('createNoteForm');
+            var second = document.getElementById('profileBlock');
+            var third = document.getElementById('noteBody');
+
+            first.style.visibility = 'hidden';
+            second.style.visibility = 'hidden';
+            if (third.style.visibility = 'hidden') {
+            third.style.visibility = 'visible';
+            }
+            else third.style.visibility = 'hidden';
             }
 
-            function save () {
-            $.ajax({
-            url: '/saveUserData?login=&fullName=&date=',
-            type: 'POST',
-            success: function (res) {
-            var fullNameForm = document.getElementById('fullName').value;
-            var birthdateForm = document.getElementById('birthdate').value;
+            function createNote () {
+            var first = document.getElementById('profileBlock');
+            var second = document.getElementById('noteBody');
+            first.style.visibility = 'hidden';
+            second.style.visibility = 'hidden';
             }
-            });
-            }
+
 
 
 
@@ -291,14 +316,14 @@
         <div class="form-group" style="position: absolute">
         <span style="position: absolute; top: 60px; width: 150px;">Full name: </span>
         <input id="fullName" style="position: absolute; top: 60px; background-color: rgba(255,255,255, 0.5);
-        margin-left: 160px; border-radius: 8px; width: 220px;" readonly>
+        margin-left: 160px; border-radius: 8px; width: 220px;" disabled>
         <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Birthdate: </span>
         <input id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
-        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px" readonly>
+        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px" disabled>
         <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
         <input id="checkbox" type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px;
         background-color: transparent;
-        margin-left: 177px;" disabled="disabled">
+        margin-left: 177px;" disabled>
 
         </div>
         <button id="toNotes" onclick="toNotes()"
@@ -313,10 +338,11 @@
         style="position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Edit Profile
         </button>
-            <button id="saveEdit" onclick="saveEdit()"
-            style="visibility: hidden; position: relative; margin-top: 200px; width: 100px; height: 30px; background-color: rosybrown;
-            border: 1px solid white; border-radius: 8px; color: white">Edit Profile
-            </button>
+        <button id="saveEdit" onclick="saveEdit()"
+        style="visibility: hidden; position: relative; margin-top: 200px; width: 50px; height: 30px; background-color:
+        rosybrown;
+        border: 1px solid white; border-radius: 8px; color: white">Save Edit
+        </button>
         </div>
 
         <div id="createNoteForm" style="visibility: hidden; position: absolute; width: 400px; height: 200px;
