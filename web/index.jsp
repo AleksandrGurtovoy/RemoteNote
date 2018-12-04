@@ -271,9 +271,9 @@
         <span style="position: absolute; top: 60px; width: 150px;">Full name: </span>
         <input id="fullName" style="position: absolute; top: 60px; background-color: rgba(255,255,255, 0.5);
         margin-left: 160px; border-radius: 8px; width: 220px;" readonly>
-        <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Current time: </span>
-        <label id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
-        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px"></label>
+        <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Birthdate: </span>
+        <input id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
+        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px" readonly>
         <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
         <input id="checkbox" type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color:
         transparent;
