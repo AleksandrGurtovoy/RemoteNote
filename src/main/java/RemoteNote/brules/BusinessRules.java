@@ -109,7 +109,7 @@ public class BusinessRules {
             throw new ServiceException("title is null");
         }
         try{
-
+            noteDao.saveNote(note);
         } catch (Exception ex) {
         throw new ServiceException(ex, ex.getMessage());
     }
