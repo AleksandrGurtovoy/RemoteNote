@@ -4,7 +4,8 @@
         <script type="text/javascript">
         var fullName = "";
             var birthdate = "";
-            var student = false;
+            var student;
+            var id;
         var Validation = function () {
         var login = document.getElementById('login').value;
         var pass = document.getElementById('password');
@@ -16,6 +17,7 @@
         fullName = mas.fullName;
             birthdate = mas.dateOfBirthday;
             student = mas.student;
+            id = mas.id;
 
         if (mas.password == pass.value) {
         $.ajax({
@@ -260,7 +262,7 @@
         </div>
         </div>
         -->
-        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 300px; width: 400px; height: 300px;
+        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 50px; width: 400px; height: 300px;
         background-color: rgba(255,255,255, 0.5);
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
         font-size: 23px">
@@ -271,9 +273,9 @@
         <span style="position: absolute; top: 60px; width: 150px;">Full name: </span>
         <input id="fullName" style="position: absolute; top: 60px; background-color: rgba(255,255,255, 0.5);
         margin-left: 160px; border-radius: 8px; width: 220px;" readonly>
-        <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Current time: </span>
-        <label id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
-        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px"></label>
+        <span style="position: absolute; top: 105px; width: 150px; margin-left: 15px">Birthdate: </span>
+        <input id="birthdate" style="position: absolute; top: 105px; background-color: rgba(255,255,255, 0.5);
+        margin-left: 177px; border-radius: 8px; width: 200px; height: 37px" readonly>
         <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
         <input id="checkbox" type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color:
         transparent;
