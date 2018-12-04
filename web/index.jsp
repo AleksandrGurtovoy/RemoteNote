@@ -260,7 +260,7 @@
         </div>
         </div>
         -->
-        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 300px; width: 400px; height: 300px;
+        <div id="profileBlock" style="visibility: hidden; position: absolute; margin-top: 50px; width: 400px; height: 300px;
         background-color: rgba(255,255,255, 0.5);
         border: 3px solid white; border-radius: 8px; text-align: center; color: white;
         font-size: 23px">
