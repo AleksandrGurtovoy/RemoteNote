@@ -278,7 +278,7 @@
         margin-left: 177px; border-radius: 8px; width: 200px; height: 37px" readonly>
         <span style="position: absolute; top: 145px; width: 130px;">Student: </span>
         <input id="checkbox" type="checkbox" style="position: absolute; top: 145px; width: 30px; height: 30px; background-color: transparent;
-            margin-left: 177px;" readonly>
+            margin-left: 177px;" disabled="disabled">
 
         </div>
         <button id="toNotes" onclick="toNotes()"
