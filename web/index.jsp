@@ -85,22 +85,29 @@
                     url: '/notes/getNotes?id=' + id,
                     type: 'GET',
                     success: function (res) {
-                        var mas = JSON.parse(res);
-                        var arr = ['Первая строка', 'Вторая строка', 'Третья строка'];
-                        for (j in mas.title) {
-                                arr.push(j)
-
+                        var arr = [];
+                        var arrBody = [];
+                        for (var j=0;j<res.length;j++) {
+                            var el = res[j];
+                            arr.push(el.title);
+                            arrBody.push(el.body)
                         }
-                        elem = document.getElementById("notesList"), i = 0;
+                       var elem = document.getElementById("notesList"), i = 0;
+                        var body = document.getElementById("textNotes"), a = 0;
                         return function () {
                             for (i; i < arr.length; i++) {
                                 if (i < arr.length) {
                                     elem.innerHTML += arr[i] + '<br>';
-
+                                }
+                            }
+                            for (a; a < arrBody.length; a++) {
+                                if (a < arrBody.length) {
+                                    body.innerHTML += arrBody[a] + '<br>';
                                 }
                             }
 
                         }();
+
                     }
                 })
             }
@@ -391,7 +398,7 @@
             <label>Name of notes:</label>
             <input id="noteName" style="opacity: 0.5; width: 94%; height: 25px;">
             <label>Text:</label>
-            <input id="noteText" style="opacity: 0.5; width: 94%; height: 25px;">
+            <input id="notesText" style="opacity: 0.5; width: 94%; height: 25px;">
         <button onclick="save()"
         style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px; color: white">Save</button>
@@ -408,33 +415,33 @@
 
         <div id="notesList" style="position: absolute; width: 300px; height: 600px; border: 3px solid white; border-radius: 6px;
         background-color: rgba(255,255,255, 0.4)">
-        <div style="position: absolute;width: 100%; height: 50px; z-index: 1;
-        border-bottom: 3px solid white;">Notes
+        <div style="position: absolute;width: 100%; height: 50px; z-index: 1;">Notes
         </div>
             <br>
         </div>
-        <div style="position: absolute; margin-left: 295px; width: 500px; height: 600px; border: 3px solid white;
-        border-radius: 6px; background-color: rgba(255,255,255, 0.4)">
-        <div style="position: relative; width: 100%; height: 50px;
-        border-bottom: 3px solid white">Change your note
-        </div>
 
-        <div style="position: relative;width: 100%; height: 150px; border-bottom: 3px solid white; padding-top: 15px">
-        <textarea id="textarea" style="opacity: 0.5; width: 94%; height: 75px"></textarea>
-        <button onclick="edit()"
-        style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+        <div id="textNotes" style="position: absolute; margin-left: 295px; width: 500px; height: 600px; border: 3px solid white;
+        border-radius: 6px; background-color: rgba(255,255,255, 0.4);">
+        <div style="position: relative; width: 100%; height: 50px; margin-bottom: -50px">Notes Body
+        </div>
+                <br>
+        </div>
+               <!--
+                <div style="position: relative;width: 100%; height: 150px; border-bottom: 3px solid white; padding-top: 15px">
+                        <textarea id="textarea" style="opacity: 0.5; width: 94%; height: 75px"></textarea>
+                        <button onclick="edit()"
+                                style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px">Edit</button>
-        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+                        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px">Save</button>
-        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
+                        <button style="position: relative; width: 100px; height: 30px; background-color: rosybrown;
         border: 1px solid white; border-radius: 8px">Delete</button>
-        </div>
-
-        </div>
-        <button onclick="goBack()"
-        style="position: absolute; width: 100px; height: 30px; background-color: rosybrown;
+                        <button onclick="goBack()"
+                                style="position: absolute; width: 100px; height: 30px; background-color: rosybrown;
         top: 650px;
         border: 1px solid white; border-radius: 8px; color: white">Go back</button>
+                </div>
+-->
         </div>
 
         </body>
